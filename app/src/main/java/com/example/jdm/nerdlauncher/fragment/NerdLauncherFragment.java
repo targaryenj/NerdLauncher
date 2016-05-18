@@ -55,6 +55,7 @@ public class NerdLauncherFragment extends Fragment {
         List<ResolveInfo> activities = pm.queryIntentActivities(startupIntent,0);
         List<AppHolder> appList = new ArrayList<>();
 
+        //Sort App by AppName
         Collections.sort(activities, new Comparator<ResolveInfo>() {
             @Override
             public int compare(ResolveInfo a, ResolveInfo b) {
@@ -78,7 +79,6 @@ public class NerdLauncherFragment extends Fragment {
         mRecyclerView.setAdapter(new ActivityAdapter(appList));
 
     }
-
 
     private class ActivityHolder extends RecyclerView.ViewHolder{
         private ImageView mImageView;
@@ -106,6 +106,10 @@ public class NerdLauncherFragment extends Fragment {
             });
         }
 
+        /**
+         * 绑定app信息
+         * @param app
+         */
         public void bindActivity(AppHolder app){
             appHolder = app;
             mNameTextView.setText(appHolder.getAppName());
